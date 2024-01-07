@@ -66,4 +66,8 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost);
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+<<<<<<< HEAD
 app.use("/posts", postRoutes);
+=======
+app.use("/posts", postRoutes);
+>>>>>>> 6b3c9ffc38d0cf14caed48362c97846ed3d5f570
