@@ -33,6 +33,7 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001;
+console.log(process.env.PORT);
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
