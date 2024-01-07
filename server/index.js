@@ -34,6 +34,13 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001;
 
+app.use(
+  cors({
+    origin: "https://sociopedia123.vercel.app",
+    credentials: true,
+  })
+);
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -58,6 +65,20 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage });
+
+app.use((req, res, next) => {
+  res.setHeader(
+      "Access-Control-Allow-Origin",
+      "https://sociopedia123.vercel.app"
+  );
+  res.header(
+      "Access-Control-Allow-Origin",
+      "Origin,X-Requested-With,Content-Type,Accept",
+      "Access-Control-Allow-Methods: GET, DELETE, PUT, PATCH, HEAD, OPTIONS, POST"
+  );
+  next();
+  });
+
 
 /* ROUTES WITH FILES */
 app.post("/auth/register", upload.single("picture"), register);
