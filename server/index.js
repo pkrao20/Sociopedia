@@ -59,11 +59,17 @@ mongoose
   .catch((error) => console.log(`${error} did not connect`));
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://sociopedia123.vercel.app");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, DELETE, PUT, PATCH, HEAD, OPTIONS, POST");
-  next();
-});
+    res.setHeader(
+        "Access-Control-Allow-Origin",
+        "https://sociopedia123.vercel.app"
+    );
+    res.header(
+        "Access-Control-Allow-Origin",
+        "Origin,X-Requested-With,Content-Type,Accept",
+        "Access-Control-Allow-Methods: GET, DELETE, PUT, PATCH, HEAD, OPTIONS, POST"
+    );
+    next();
+    });
 /* FILE STORAGE */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
