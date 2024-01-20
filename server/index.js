@@ -40,6 +40,20 @@ app.use(
     credentials: true,
   })
 );
+app.use((req, res, next) => {
+  res.setHeader(
+      "Access-Control-Allow-Origin",
+      "https://sociopedia123.vercel.app"
+  );
+  res.header(
+      "Access-Control-Allow-Origin",
+      "Origin,X-Requested-With,Content-Type,Accept",
+      "Access-Control-Allow-Methods: GET, DELETE, PUT, PATCH, HEAD, OPTIONS, POST"
+  );
+  next();
+  });
+
+
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -65,19 +79,6 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage });
-
-app.use((req, res, next) => {
-  res.setHeader(
-      "Access-Control-Allow-Origin",
-      "https://sociopedia123.vercel.app"
-  );
-  res.header(
-      "Access-Control-Allow-Origin",
-      "Origin,X-Requested-With,Content-Type,Accept",
-      "Access-Control-Allow-Methods: GET, DELETE, PUT, PATCH, HEAD, OPTIONS, POST"
-  );
-  next();
-  });
 
 
 /* ROUTES WITH FILES */
