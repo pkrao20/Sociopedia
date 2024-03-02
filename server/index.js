@@ -27,7 +27,12 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 app.use(cors());
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001;
-
+app.use(
+  cors({
+    origin: "https://sociopedia123.vercel.app",
+    credentials: true,
+  })
+);
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
